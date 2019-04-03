@@ -17,11 +17,23 @@ class LoginPage extends Component {
     this.setState({ [key]: val });
   }
 
-  loginClick() {}
+  loginClick() {
+    axios
+      .post(`/api/user/login/${this.state.username}/${this.state.password}`)
+      .then(res => {
+        if (typeof res.data === "string") {
+          alert(res.data);
+        } else {
+          console.log(res.data);
+          this.props.history.push("/quotes");
+        }
+      })
+      .catch(err => console.log(err));
+  }
 
   registerClick() {
     axios
-      .post(`/api/userprofile/${this.state.username}/${this.state.password}`)
+      .post(`/api/user/register/${this.state.username}/${this.state.password}`)
       .then(res => {
         if (res.data === "Username Already Exists!") {
           alert(res.data);

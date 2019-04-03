@@ -11,7 +11,7 @@ const port = PORT || 3001;
 
 const {
   addUser,
-  sessionUser,
+  loginUser,
   getUserRating,
   postUserRating
 } = require("./controllers/profileCtrl");
@@ -61,7 +61,8 @@ app.get("/api/test", (req, res) => {
 });
 
 // user profile end points
-app.post("/api/userprofile/:username/:password", addUser);
+app.post("/api/user/register/:username/:password", addUser);
+app.post("/api/user/login/:username/:password", loginUser);
 // app.get("/api/userprofile", sessionUser);
 // app.get("/api/userprofile/:username", getUserRating);
 // app.post("/api/userprofile", postUserRating);
