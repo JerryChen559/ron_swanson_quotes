@@ -43,14 +43,13 @@ app.use(
 massive(CONNECTION_STRING)
   .then(dbInstance => {
     app.set("db", dbInstance);
-    //
+
     // dbInstance
     //   .postgres_create()
     //   .then(resonse => {
     //     console.log("Table Created");
     //   })
     //   .catch(e => console.log(e));
-    //
   })
   .catch(err => {
     console.log(err);
@@ -61,6 +60,7 @@ app.get("/api/test", (req, res) => {
   res.status(200).json(req.session);
 });
 
+/**
 // user profile end points
 app.post("/api/userprofile/:username/:password", addUser);
 app.get("/api/userprofile", sessionUser);
@@ -72,6 +72,7 @@ app.get("/api/getSmallQuote", getSmallQuote);
 app.get("/api/getMediumQuote", getMediumQuote);
 app.get("/api/getLargeQuote", getLargeQuote);
 app.get("/api/getQuoteAvg", getQuoteAvg);
+ */
 
 // log out of session
 app.get("/api/logout", (req, res) => {

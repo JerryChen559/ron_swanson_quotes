@@ -9,13 +9,12 @@ class LoginPage extends Component {
       username: "",
       password: ""
     };
-    this.changeHandler = this.changeHandler.bind(this);
-    this.loginClick = this.login.bind(this);
-    this.registerClick = this.register.bind(this);
+    this.loginClick = this.loginClick.bind(this);
+    this.registerClick = this.registerClick.bind(this);
   }
 
-  changeHandler(e) {
-    this.setState({ [e.target.name]: e.target.value });
+  inputHandler(key, val) {
+    this.setState({ [key]: val });
   }
 
   loginClick() {}
@@ -33,7 +32,7 @@ class LoginPage extends Component {
             type="text"
             placeholder="Username"
             value={this.state.username}
-            onChange={this.changeHandler}
+            onChange={e => this.inputHandler("username", e.target.value)}
           />
         </div>
         <div>
@@ -42,7 +41,7 @@ class LoginPage extends Component {
             type="text"
             placeholder="Password"
             value={this.state.password}
-            onChange={this.changeHandler}
+            onChange={e => this.inputHandler("password", e.target.value)}
           />
         </div>
         <div>

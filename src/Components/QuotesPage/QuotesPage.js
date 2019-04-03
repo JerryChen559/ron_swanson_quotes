@@ -15,7 +15,8 @@ class QuotesPage extends Component {
   }
 
   // componentDidMount() {
-  // get generated quote's average stars
+  // get user's profile
+
   // }
 
   onRadioChange(e) {
@@ -35,6 +36,7 @@ class QuotesPage extends Component {
         .catch(err => console.log(err));
     }
   }
+  // .then get generated quote's average stars
 
   render() {
     console.log(this.state);
