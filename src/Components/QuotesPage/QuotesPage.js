@@ -16,7 +16,6 @@ class QuotesPage extends Component {
 
   // componentDidMount() {
   // get user's profile
-
   // }
 
   onRadioChange(e) {

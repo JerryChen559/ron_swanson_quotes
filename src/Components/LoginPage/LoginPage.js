@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./LoginPage.css";
-// import axios from "axios";
+import axios from "axios";
 
 class LoginPage extends Component {
   constructor(props) {
@@ -18,7 +18,20 @@ class LoginPage extends Component {
   }
 
   loginClick() {}
-  registerClick() {}
+
+  registerClick() {
+    axios
+      .post(`/api/userprofile/${this.state.username}/${this.state.password}`)
+      .then(res => {
+        if (res.data === "Username Already Exists!") {
+          alert(res.data);
+        } else {
+          console.log(res.data);
+          this.props.history.push("/quotes");
+        }
+      })
+      .catch(err => console.log(err));
+  }
 
   render() {
     console.log(this.state);
