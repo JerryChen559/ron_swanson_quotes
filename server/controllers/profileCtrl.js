@@ -36,7 +36,7 @@ const loginUser = (req, res) => {
       } else {
         if (req.params.password == user[0].password) {
           req.session.userid = user[0].userid;
-          // console.log('req.session after: ', req.session);
+          // console.log("req.session after: ", req.session);
           res.status(200).json(user[0]);
         } else {
           res.status(200).json("Wrong Password!");

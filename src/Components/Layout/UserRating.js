@@ -14,7 +14,7 @@ class UserRating extends Component {
 
   onSubmitRating() {
     // axios call to store user, quote, rating
-    // axios.get("j")
+    // axios.post("this.props.quote/userID/")
     // .then
     // ( () => {
     this.setState({

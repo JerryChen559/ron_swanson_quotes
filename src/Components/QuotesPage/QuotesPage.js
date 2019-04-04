@@ -9,6 +9,7 @@ class QuotesPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      user_id: "",
       quoteSize: "small",
       displayQuote: "",
       quoteRating: 0
@@ -17,9 +18,17 @@ class QuotesPage extends Component {
     this.getQuote = this.getQuote.bind(this);
   }
 
-  // componentDidMount() {
-  // get user's profile
-  // }
+  componentDidMount() {
+    axios
+      .get("/api/test")
+      .then(res => {
+        // console.log("res.data", res.data);
+        this.setState({
+          user_id: res.data.userid
+        });
+      })
+      .catch(err => console.log(err));
+  }
 
   onRadioChange(e) {
     this.setState({ [e.target.name]: e.target.value });

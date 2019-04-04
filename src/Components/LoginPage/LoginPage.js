@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import LoginNavbar from "../Layout/LoginNavbar";
 import "./LoginPage.css";
 import axios from "axios";
 
@@ -50,7 +51,7 @@ class LoginPage extends Component {
 
     return (
       <div>
-        <h1>Swanson's Words of Wisdom</h1>
+        <LoginNavbar />
         <div>
           <label>Username</label>
           <input
