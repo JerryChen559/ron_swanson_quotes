@@ -10,7 +10,7 @@ class QuotesPage extends Component {
     super(props);
     this.state = {
       quoteSize: "small",
-      displayQuote: [],
+      displayQuote: "",
       quoteRating: 0
     };
     this.onRadioChange = this.onRadioChange.bind(this);

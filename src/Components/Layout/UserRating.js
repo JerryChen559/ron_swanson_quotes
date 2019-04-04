@@ -12,6 +12,21 @@ class UserRating extends Component {
     };
   }
 
+  onSubmitRating() {
+    // axios call to store user, quote, rating
+    // axios.get("j")
+    // .then
+    // ( () => {
+    this.setState({
+      RatingAllowed: false
+    });
+  }
+  onClickTestTrueToFalse() {
+    this.setState({
+      RatingAllowed: false
+    });
+  }
+
   onStarClick(nextValue, prevValue, name) {
     this.setState({ rating: nextValue });
   }
@@ -29,12 +44,11 @@ class UserRating extends Component {
     //   display Editable
     // }
 
-    // onSubmitRating(){} // axios call to store user, quote, rating
-
-    return (
+    return this.state.RatingAllowed === true ? (
       <div>
         <p>-----------------------------------</p>
         <h2>Vote for Awesomeness</h2>
+
         {/* Option A: */}
         <p> Display for User to edit </p>
         <p> Editable only if they have not rated the quote before. </p>
@@ -48,7 +62,16 @@ class UserRating extends Component {
           />
           {/* add a submit button  */}
           {/* Submit button changes the RatingAllowed to false */}
+          <button onClick={() => this.onClickTestTrueToFalse()}>
+            {" "}
+            CLICKMEEE
+          </button>
         </div>
+      </div>
+    ) : (
+      <div>
+        <p>-----------------------------------</p>
+        <h2>Vote for Awesomeness</h2>
 
         {/* Option B: */}
         <p> Display User's Rating Here </p>
