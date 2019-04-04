@@ -46,16 +46,7 @@ const loginUser = (req, res) => {
     .catch(console.log);
 };
 
-// get session onto user and pass front
-// const sessionUser = (req, res) => {
-//   if (req.session.user) {
-//     res.status(200).json(req.session.user);
-//   } else res.status(500);
-// };
-
 module.exports = {
   addUser,
   loginUser
-  // getUserRating,
-  // postUserRating
 };

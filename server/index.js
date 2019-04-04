@@ -9,13 +9,12 @@ const { SESSION_SECRET, CONNECTION_STRING, PORT } = process.env;
 
 const port = PORT || 3001;
 
+const { addUser, loginUser } = require("./controllers/profileCtrl");
 const {
-  addUser,
-  loginUser,
+  postUserRating,
   getUserRating,
-  postUserRating
-} = require("./controllers/profileCtrl");
-const { getQuoteAvg, postRatedQuote } = require("./controllers/quoteCtrl");
+  getAvgRating
+} = require("./controllers/quoteCtrl");
 
 const app = express();
 app.use(json());
@@ -57,11 +56,11 @@ app.get("/api/test", (req, res) => {
 // user profile end points
 app.post("/api/user/register/:username/:password", addUser);
 app.post("/api/user/login/:username/:password", loginUser);
-// app.get("/api/userprofile/:username", getUserRating);
-// app.post("/api/userprofile", postUserRating);
 
-// user quote end points
-// app.get("/api/getQuoteAvg", getQuoteAvg);
+// quote end points
+app.post("/api/quotes/:userid/:quote/:stars", postUserRating);
+// app.get("/api/quotes/:userid/:quote", getUserRating);
+// app.get("/api/quotes/:quote", getAvgRating);
 
 // log out of session
 app.get("/api/logout", (req, res) => {

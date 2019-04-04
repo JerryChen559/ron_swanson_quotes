@@ -12,8 +12,19 @@ class AverageRating extends Component {
   }
 
   componentDidMount = () => {
-    axios.get().then();
+    this.getAverageRating();
   };
+
+  getAverageRating() {
+    axios
+      .get(`/api/quotes/${this.props.quote}`)
+      .then(res => {
+        this.setState({
+          average: res.data
+        });
+      })
+      .catch(err => console.log(err));
+  }
 
   render() {
     // console.log("state:", this.state);
@@ -28,7 +39,7 @@ class AverageRating extends Component {
           <StarRatingComponent
             name="rate2"
             editing={false} // user cannot change rating
-            starCount={10}
+            starCount={5}
             value={this.state.average}
           />
         </div>

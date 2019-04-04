@@ -109,8 +109,14 @@ class QuotesPage extends Component {
         </div>
         <div>{this.state.displayQuote}</div>
 
-        <AverageRating />
-        <UserRating />
+        <AverageRating
+          user_id={this.state.user_id}
+          quote={this.state.displayQuote}
+        />
+        <UserRating
+          user_id={this.state.user_id}
+          quote={this.state.displayQuote}
+        />
       </div>
     );
   }
