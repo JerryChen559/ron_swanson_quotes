@@ -15,13 +15,7 @@ const {
   getUserRating,
   postUserRating
 } = require("./controllers/profileCtrl");
-const {
-  getSmallQuote,
-  getMediumQuote,
-  getLargeQuote,
-  getQuoteAvg,
-  postRatedQuote
-} = require("./controllers/quoteCtrl");
+const { getQuoteAvg, postRatedQuote } = require("./controllers/quoteCtrl");
 
 const app = express();
 app.use(json());
@@ -63,14 +57,10 @@ app.get("/api/test", (req, res) => {
 // user profile end points
 app.post("/api/user/register/:username/:password", addUser);
 app.post("/api/user/login/:username/:password", loginUser);
-// app.get("/api/userprofile", sessionUser);
 // app.get("/api/userprofile/:username", getUserRating);
 // app.post("/api/userprofile", postUserRating);
 
 // user quote end points
-// app.get("/api/getSmallQuote", getSmallQuote);
-// app.get("/api/getMediumQuote", getMediumQuote);
-// app.get("/api/getLargeQuote", getLargeQuote);
 // app.get("/api/getQuoteAvg", getQuoteAvg);
 
 // log out of session

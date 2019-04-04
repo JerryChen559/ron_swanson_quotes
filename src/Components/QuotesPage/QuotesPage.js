@@ -8,7 +8,7 @@ class QuotesPage extends Component {
     super(props);
     this.state = {
       quoteSize: "small",
-      displayQuote: "",
+      displayQuote: [], //<-- note to self: will not work if empty string
       quoteRating: 0
     };
     this.onRadioChange = this.onRadioChange.bind(this);
@@ -23,18 +23,17 @@ class QuotesPage extends Component {
   }
 
   getQuote() {
-    if (this.state.quoteSize === "small") {
-      axios
-        .get("/api/getSmallQuote")
-        .then(res => {
-          // console.log(res.data)
-          this.setState({
-            displayQuote: res.data[0]
-          });
-        })
-        .catch(err => console.log(err));
-    }
+    axios
+      .get("https://ron-swanson-quotes.herokuapp.com/v2/quotes/60")
+      .then(res => {
+        // console.log(res.data);
+        this.setState({
+          displayQuote: res.data
+        });
+      })
+      .catch(err => console.log(err));
   }
+
   // .then get generated quote's average stars
 
   render() {
@@ -51,12 +50,30 @@ class QuotesPage extends Component {
       message = "Quotes with 13 words or more";
     }
 
+    let allquotes = this.state.displayQuote;
+
+    let onequote = allquotes.find(x => {
+      if (this.state.quoteSize === "small") {
+        return x.toString().split(" ").length <= 4;
+      }
+      if (this.state.quoteSize === "medium") {
+        return (
+          x.toString().split(" ").length > 4 &&
+          x.toString().split(" ").length < 13
+        );
+      }
+      if (this.state.quoteSize === "large") {
+        return x.toString().split(" ").length >= 13;
+      }
+    });
+
     return (
       <div>
         <Navbar history={this.props.history} />
         <p>Quote Size:</p>
         <div>
           <input
+            defaultChecked
             type="radio"
             name="quoteSize"
             value="small"
@@ -80,8 +97,9 @@ class QuotesPage extends Component {
         </div>
         <p>Note: {message}</p>
         <div>
-          <button onClick={() => this.getQuote}>Generate Quote!</button>
+          <button onClick={() => this.getQuote()}>Generate Quote!</button>
         </div>
+        <div>{onequote}</div>
       </div>
     );
   }
