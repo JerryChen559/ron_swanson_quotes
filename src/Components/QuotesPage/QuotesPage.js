@@ -1,5 +1,7 @@
 import React, { Component } from "react";
-import Navbar from "../Navbar/Navbar";
+import Navbar from "../Layout/Navbar";
+import AverageRating from "../Layout/AverageRating";
+import UserRating from "../Layout/UserRating";
 import "./QuotesPage.css";
 import axios from "axios";
 
@@ -8,10 +10,11 @@ class QuotesPage extends Component {
     super(props);
     this.state = {
       quoteSize: "small",
-      displayQuote: [], //<-- note to self: will not work if empty string
+      displayQuote: [],
       quoteRating: 0
     };
     this.onRadioChange = this.onRadioChange.bind(this);
+    this.getQuote = this.getQuote.bind(this);
   }
 
   // componentDidMount() {
@@ -28,7 +31,20 @@ class QuotesPage extends Component {
       .then(res => {
         // console.log(res.data);
         this.setState({
-          displayQuote: res.data
+          displayQuote: res.data.find(x => {
+            if (this.state.quoteSize === "small") {
+              return x.toString().split(" ").length <= 4;
+            }
+            if (this.state.quoteSize === "medium") {
+              return (
+                x.toString().split(" ").length > 4 &&
+                x.toString().split(" ").length < 13
+              );
+            }
+            if (this.state.quoteSize === "large") {
+              return x.toString().split(" ").length >= 13;
+            }
+          })
         });
       })
       .catch(err => console.log(err));
@@ -49,23 +65,6 @@ class QuotesPage extends Component {
     if (this.state.quoteSize === "large") {
       message = "Quotes with 13 words or more";
     }
-
-    let allquotes = this.state.displayQuote;
-
-    let onequote = allquotes.find(x => {
-      if (this.state.quoteSize === "small") {
-        return x.toString().split(" ").length <= 4;
-      }
-      if (this.state.quoteSize === "medium") {
-        return (
-          x.toString().split(" ").length > 4 &&
-          x.toString().split(" ").length < 13
-        );
-      }
-      if (this.state.quoteSize === "large") {
-        return x.toString().split(" ").length >= 13;
-      }
-    });
 
     return (
       <div>
@@ -97,9 +96,12 @@ class QuotesPage extends Component {
         </div>
         <p>Note: {message}</p>
         <div>
-          <button onClick={() => this.getQuote()}>Generate Quote!</button>
+          <button onClick={this.getQuote}>Generate Quote!</button>
         </div>
-        <div>{onequote}</div>
+        <div>{this.state.displayQuote}</div>
+
+        <AverageRating />
+        <UserRating />
       </div>
     );
   }
