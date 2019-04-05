@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import PropTypes from "prop-types";
+import SwansonFace from "../../Assets/SwansonFace.jpeg";
 
 // material UI
 import { withStyles } from "@material-ui/core/styles";
@@ -39,7 +40,13 @@ class Navbar extends Component {
       <div className={classes.root}>
         <AppBar position="static">
           <Toolbar>
-            <Typography variant="h6" color="inherit" className={classes.grow}>
+            <img src={SwansonFace} height="50px" width="40px" />
+            <Typography
+              variant="h6"
+              color="inherit"
+              style={{ marginLeft: 20 }}
+              className={classes.grow}
+            >
               Ron Swanson Words of Wisdom :D
             </Typography>
           </Toolbar>

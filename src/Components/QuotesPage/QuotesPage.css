@@ -1,0 +1,18 @@
+.quotes_page {
+  min-width: 810px;
+  display: flex;
+}
+
+.left_content {
+  width: 50%;
+  text-align: center;
+}
+
+.left_content img:hover,
+.left_content button:hover {
+  cursor: pointer;
+}
+
+.right_content {
+  width: 50%;
+}

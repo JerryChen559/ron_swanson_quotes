@@ -76,7 +76,7 @@ class UserRating extends Component {
       this.state.userRating !== 0 ? (
         <div>
           <p>-----------------------------------</p>
-          <h2>Vote for Awesomeness</h2>
+          <h3>Vote for Awesomeness</h3>
 
           {/* Option: Show user's rating of quote */}
           <div>
@@ -103,7 +103,9 @@ class UserRating extends Component {
             onStarClick={this.onStarClick.bind(this)}
           />
           {/* Submit button  */}
-          <button onClick={() => this.onSubmitRating()}>Rate my rating!</button>
+          <button onClick={() => this.onSubmitRating()}>
+            Submit my rating!
+          </button>
         </div>
       )
     ) : (

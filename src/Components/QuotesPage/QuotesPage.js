@@ -4,6 +4,7 @@ import AverageRating from "../Layout/AverageRating";
 import UserRating from "../Layout/UserRating";
 import "./QuotesPage.css";
 import axios from "axios";
+import SwansonButtonPic from "../../Assets/SwansonButtonPic.jpg";
 
 class QuotesPage extends Component {
   constructor(props) {
@@ -81,46 +82,63 @@ class QuotesPage extends Component {
 
     return (
       <div>
-        <Navbar history={this.props.history} />
-        <p>Quote Size:</p>
         <div>
-          <input
-            defaultChecked
-            type="radio"
-            name="quoteSize"
-            value="small"
-            onChange={this.onRadioChange}
-          />
-          Small
-          <input
-            type="radio"
-            name="quoteSize"
-            value="medium"
-            onChange={this.onRadioChange}
-          />
-          Medium
-          <input
-            type="radio"
-            name="quoteSize"
-            value="large"
-            onChange={this.onRadioChange}
-          />
-          Large
+          <Navbar history={this.props.history} />
         </div>
-        <p>Note: {message}</p>
-        <div>
-          <button onClick={this.getQuote}>Generate Quote!</button>
-        </div>
-        <div>{this.state.displayQuote}</div>
+        <div className="quotes_page">
+          <section className="left_content">
+            <h3>Quote Size:</h3>
+            <div>
+              <input
+                defaultChecked
+                type="radio"
+                name="quoteSize"
+                value="small"
+                onChange={this.onRadioChange}
+              />
+              Small
+              <input
+                type="radio"
+                name="quoteSize"
+                value="medium"
+                onChange={this.onRadioChange}
+              />
+              Medium
+              <input
+                type="radio"
+                name="quoteSize"
+                value="large"
+                onChange={this.onRadioChange}
+              />
+              Large
+            </div>
+            <p>
+              {" "}
+              <strong>Note:</strong> {message}
+            </p>
+            <img
+              src={SwansonButtonPic}
+              height="260px"
+              width="400px"
+              onClick={this.getQuote}
+            />
+            <div>
+              <button onClick={this.getQuote}>Generate Quote!</button>
+            </div>
+            <div>{this.state.displayQuote}</div>
+          </section>
 
-        <AverageRating
-          user_id={this.state.user_id}
-          quote={this.state.displayQuote}
-        />
-        <UserRating
-          user_id={this.state.user_id}
-          quote={this.state.displayQuote}
-        />
+          <section className="right_content">
+            <AverageRating
+              user_id={this.state.user_id}
+              quote={this.state.displayQuote}
+            />
+            <UserRating
+              user_id={this.state.user_id}
+              quote={this.state.displayQuote}
+            />
+          </section>
+        </div>
       </div>
     );
   }
