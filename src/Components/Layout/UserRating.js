@@ -75,7 +75,7 @@ class UserRating extends Component {
       // Display either user's ability to rate or user's summary of rating
       this.state.userRating !== 0 ? (
         <div>
-          <p>-----------------------------------</p>
+          <p>__________________________________________</p>
           <h3>Vote for Awesomeness</h3>
 
           {/* Option: Show user's rating of quote */}
@@ -91,7 +91,7 @@ class UserRating extends Component {
         </div>
       ) : (
         <div>
-          <p>-----------------------------------</p>
+          <p>__________________________________________</p>
           <h2>Vote for Awesomeness</h2>
 
           {/* Option: Open for user to rate quote */}

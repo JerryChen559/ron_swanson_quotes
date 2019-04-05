@@ -6,6 +6,22 @@ import "./QuotesPage.css";
 import axios from "axios";
 import SwansonButtonPic from "../../Assets/SwansonButtonPic.jpg";
 
+// material-UI
+import PropTypes from "prop-types";
+import Button from "@material-ui/core/Button";
+import { withStyles } from "@material-ui/core/styles";
+import TextField from "@material-ui/core/TextField";
+
+const styles = theme => ({
+  button: {
+    margin: theme.spacing.unit
+  },
+  textField: {
+    marginLeft: theme.spacing.unit,
+    marginRight: theme.spacing.unit
+  }
+});
+
 class QuotesPage extends Component {
   constructor(props) {
     super(props);
@@ -123,12 +139,20 @@ class QuotesPage extends Component {
               onClick={this.getQuote}
             />
             <div>
-              <button onClick={this.getQuote}>Generate Quote!</button>
+              {/* <button onClick={this.getQuote}>Generate Quote!</button> */}
+              <Button
+                variant="contained"
+                color="primary"
+                className={this.props.classes.button}
+                onClick={this.getQuote}
+              >
+                Generate Quote!
+              </Button>
             </div>
-            <div>{this.state.displayQuote}</div>
           </section>
 
           <section className="right_content">
+            <div className="quote">{this.state.displayQuote}</div>
             <AverageRating
               user_id={this.state.user_id}
               quote={this.state.displayQuote}
@@ -144,4 +168,8 @@ class QuotesPage extends Component {
   }
 }
 
-export default QuotesPage;
+QuotesPage.propTypes = {
+  classes: PropTypes.object.isRequired
+};
+
+export default withStyles(styles)(QuotesPage);

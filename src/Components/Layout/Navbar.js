@@ -41,14 +41,19 @@ class Navbar extends Component {
       <div className={classes.root}>
         <AppBar position="static">
           <Toolbar>
-            <img src={SwansonFace} height="50px" width="40px" />
+            <img
+              src={SwansonFace}
+              height="50px"
+              width="40px"
+              alt="Pic of Mr Ron Swanson"
+            />
             <Typography
               variant="h6"
               color="inherit"
               style={{ marginLeft: 20 }}
               className={classes.grow}
             >
-              Ron Swanson Words of Wisdom :D
+              Ron Swanson's Words of Wisdom :D
             </Typography>
             <Button color="inherit" onClick={() => this.logout()}>
               Logout
