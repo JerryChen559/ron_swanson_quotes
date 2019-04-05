@@ -11,10 +11,6 @@ class AverageRating extends Component {
     };
   }
 
-  // componentDidMount = () => {
-  //   this.getAverageRating();
-  // };
-
   componentDidUpdate = (prevProps, prevState) => {
     // console.log("prevState", prevState);
 
