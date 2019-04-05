@@ -9,7 +9,7 @@
 
 -- CREATE TABLE SwansonQuotes
 -- (
---   username TEXT REFERENCES SwansonUsers (username) NOT NULL,
+--   userid INTEGER REFERENCES SwansonUsers (userid) NOT NULL,
 --   quoteID serial NOT NULL,
 --   quoteContent TEXT NOT NULL,
 --   quoteStars INTEGER NOT NULL

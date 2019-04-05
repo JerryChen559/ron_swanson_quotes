@@ -59,8 +59,8 @@ app.post("/api/user/login/:username/:password", loginUser);
 
 // quote end points
 app.post("/api/quotes/:userid/:quote/:stars", postUserRating);
-// app.get("/api/quotes/:userid/:quote", getUserRating);
-// app.get("/api/quotes/:quote", getAvgRating);
+app.get("/api/quotes/:userid/:quote", getUserRating);
+app.get("/api/quotes/:quote", getAvgRating);
 
 // log out of session
 app.get("/api/logout", (req, res) => {

@@ -8,8 +8,7 @@ class UserRating extends Component {
 
     this.state = {
       rating: 1,
-      userRating: 0,
-      RatingAllowed: true
+      userRating: 0
     };
   }
 
@@ -17,18 +16,33 @@ class UserRating extends Component {
     this.getUserRating();
   };
 
+  componentDidUpdate = (prevProps, prevState) => {
+    console.log("prevProps", prevProps);
+    if (prevProps.quote != this.props.quote) {
+      return this.getUserRating();
+    }
+  };
+
   getUserRating() {
     axios
       .get(`/api/quotes/${this.props.user_id}/${this.props.quote}`)
       .then(res => {
+        // console.log(res.data);
         this.setState({
-          userRating: res.data
+          userRating: res.data[0].quotestars
         });
       })
-      .catch(err => console.log(err));
+      .catch(() => {
+        this.setState({
+          userRating: 0
+        });
+      });
   }
 
   onSubmitRating() {
+    this.setState({
+      userRating: 0
+    });
     axios
       .post(
         `/api/quotes/${this.props.user_id}/${this.props.quote}/${
@@ -36,19 +50,13 @@ class UserRating extends Component {
         }`
       )
       .then(res => {
+        // console.log(res.data);
         this.setState({
-          userRating: res.data
+          userRating: res.data[0].quotestars
         });
       })
       .catch(err => console.log(err));
   }
-
-  // Only used for Toggle testing
-  // onClickTestTrueToFalse() {
-  //   this.setState({
-  //     RatingAllowed: false
-  //   });
-  // }
 
   onStarClick(nextValue, prevValue, name) {
     this.setState({ rating: nextValue });
@@ -58,23 +66,20 @@ class UserRating extends Component {
     console.log("state:", this.state);
     console.log("props:", this.props);
 
-    const { rating } = this.state;
+    // const { rating } = this.state;
 
     // Display only when there is a quote.
     return this.props.quote ? (
       // Has user rated this quote ? Yes, display userRating : No, let user rate.
       // Display either user's ability to rate or user's summary of rating
-      this.state.userRating != 0 ? (
+      this.state.userRating !== 0 ? (
         <div>
           <p>-----------------------------------</p>
           <h2>Vote for Awesomeness</h2>
 
-          {/* Option to Show user rating */}
-          <p> Display User's Rating Here </p>
-          <p> Non-editable </p>
-          <p> This is shown when RatingAllowed is false </p>
+          {/* Option: Show user's rating of quote */}
           <div>
-            <h3>Rating from state: {rating}</h3>
+            <h3>You have rated this quote:</h3>
             <StarRatingComponent
               name="rate2"
               editing={false}
@@ -88,11 +93,11 @@ class UserRating extends Component {
           <p>-----------------------------------</p>
           <h2>Vote for Awesomeness</h2>
 
-          {/* Option to Rate */}
+          {/* Option: Open for user to rate quote */}
           <StarRatingComponent
             name="rate1"
             starCount={5}
-            value={rating}
+            value={this.state.rating}
             onStarClick={this.onStarClick.bind(this)}
           />
           {/* Submit button  */}

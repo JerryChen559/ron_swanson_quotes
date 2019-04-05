@@ -30,7 +30,8 @@ class AverageRating extends Component {
     // console.log("state:", this.state);
     // console.log("props:", this.props);
 
-    return (
+    // Display only when there is a quote.
+    return this.props.quote ? (
       <div>
         <p>-----------------------------------</p>
         <div>
@@ -44,6 +45,8 @@ class AverageRating extends Component {
           />
         </div>
       </div>
+    ) : (
+      ""
     );
   }
 }
