@@ -3,6 +3,22 @@ import LoginNavbar from "../Layout/LoginNavbar";
 import "./LoginPage.css";
 import axios from "axios";
 
+// material-UI
+import PropTypes from "prop-types";
+import Button from "@material-ui/core/Button";
+import { withStyles } from "@material-ui/core/styles";
+import TextField from "@material-ui/core/TextField";
+
+const styles = theme => ({
+  button: {
+    margin: theme.spacing.unit
+  },
+  textField: {
+    marginLeft: theme.spacing.unit,
+    marginRight: theme.spacing.unit
+  }
+});
+
 class LoginPage extends Component {
   constructor(props) {
     super(props);
@@ -48,33 +64,57 @@ class LoginPage extends Component {
   }
 
   render() {
-    console.log(this.state);
+    // console.log(this.state);
 
     return (
       <div>
         <LoginNavbar />
         <div className="login_page">
+          {/* Input Fields */}
           <div>
-            <label>Username</label>
-            <input
+            <TextField
+              id="outlined-email-input"
+              label="Username"
+              className={this.props.classes.textField}
+              margin="normal"
+              variant="outlined"
               type="text"
-              placeholder="Username"
               value={this.state.username}
               onChange={e => this.inputHandler("username", e.target.value)}
             />
           </div>
+
           <div>
-            <label>Password</label>
-            <input
-              type="text"
-              placeholder="Password"
+            <TextField
+              id="outlined-password-input"
+              label="Password"
+              className={this.props.classes.textField}
+              type="password"
+              margin="normal"
+              variant="outlined"
               value={this.state.password}
               onChange={e => this.inputHandler("password", e.target.value)}
             />
           </div>
+
+          {/* Buttons */}
           <div>
-            <button onClick={this.loginClick}>Login</button>
-            <button onClick={this.registerClick}>Register</button>
+            <Button
+              variant="contained"
+              color="primary"
+              className={this.props.classes.button}
+              onClick={this.loginClick}
+            >
+              Login
+            </Button>
+            <Button
+              variant="contained"
+              color="default"
+              className={this.props.classes.button}
+              onClick={this.registerClick}
+            >
+              Register
+            </Button>
           </div>
         </div>
       </div>
@@ -82,4 +122,8 @@ class LoginPage extends Component {
   }
 }
 
-export default LoginPage;
+LoginPage.propTypes = {
+  classes: PropTypes.object.isRequired
+};
+
+export default withStyles(styles)(LoginPage);

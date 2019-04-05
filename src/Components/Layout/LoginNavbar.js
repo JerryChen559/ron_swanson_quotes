@@ -18,7 +18,7 @@ const styles = {
   }
 };
 
-class Navbar extends Component {
+class LoginNavbar extends Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -56,8 +56,8 @@ class Navbar extends Component {
   }
 }
 
-Navbar.propTypes = {
+LoginNavbar.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(Navbar);
+export default withStyles(styles)(LoginNavbar);
