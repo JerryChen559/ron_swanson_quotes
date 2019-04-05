@@ -10,15 +10,10 @@ import SwansonButtonPic from "../../Assets/SwansonButtonPic.jpg";
 import PropTypes from "prop-types";
 import Button from "@material-ui/core/Button";
 import { withStyles } from "@material-ui/core/styles";
-import TextField from "@material-ui/core/TextField";
 
 const styles = theme => ({
   button: {
     margin: theme.spacing.unit
-  },
-  textField: {
-    marginLeft: theme.spacing.unit,
-    marginRight: theme.spacing.unit
   }
 });
 
@@ -134,6 +129,7 @@ class QuotesPage extends Component {
             </p>
             <img
               src={SwansonButtonPic}
+              alt="Ron Swanson Pic"
               height="260px"
               width="400px"
               onClick={this.getQuote}

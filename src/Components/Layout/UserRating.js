@@ -2,6 +2,17 @@ import React, { Component } from "react";
 import StarRatingComponent from "react-star-rating-component";
 import axios from "axios";
 
+// material-UI
+import PropTypes from "prop-types";
+import Button from "@material-ui/core/Button";
+import { withStyles } from "@material-ui/core/styles";
+
+const styles = theme => ({
+  button: {
+    margin: theme.spacing.unit
+  }
+});
+
 class UserRating extends Component {
   constructor(props) {
     super(props);
@@ -76,11 +87,11 @@ class UserRating extends Component {
       this.state.userRating !== 0 ? (
         <div>
           <p>__________________________________________</p>
-          <h3>Vote for Awesomeness</h3>
+          <h2>Vote for Awesomeness</h2>
 
           {/* Option: Show user's rating of quote */}
           <div>
-            <h3>You have rated this quote:</h3>
+            <h3>You have rated this quote. Woot woot!</h3>
             <StarRatingComponent
               name="rate2"
               editing={false}
@@ -95,7 +106,7 @@ class UserRating extends Component {
           <h2>Vote for Awesomeness</h2>
 
           {/* Option: Open for user to rate quote */}
-          <h3>You can rate this quote:</h3>
+          <h3>You can rate this quote!</h3>
           <StarRatingComponent
             name="rate1"
             starCount={5}
@@ -103,9 +114,16 @@ class UserRating extends Component {
             onStarClick={this.onStarClick.bind(this)}
           />
           {/* Submit button  */}
-          <button onClick={() => this.onSubmitRating()}>
-            Submit my rating!
-          </button>
+          <div>
+            <Button
+              variant="contained"
+              color="primary"
+              className={this.props.classes.button}
+              onClick={() => this.onSubmitRating()}
+            >
+              Submit my rating!
+            </Button>
+          </div>
         </div>
       )
     ) : (
@@ -114,4 +132,8 @@ class UserRating extends Component {
   }
 }
 
-export default UserRating;
+UserRating.propTypes = {
+  classes: PropTypes.object.isRequired
+};
+
+export default withStyles(styles)(UserRating);

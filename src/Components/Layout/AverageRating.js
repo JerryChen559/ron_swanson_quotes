@@ -60,9 +60,9 @@ class AverageRating extends Component {
     // Display only when there is a quote.
     return this.props.quote ? (
       <div>
-        <p>-----------------------------------</p>
+        <p>__________________________________________</p>
         <div>
-          <h2>Average Rating</h2>
+          <h2>Average Rating of Quote</h2>
           {/* <h2>Rating from state: {this.state.average}</h2> */}
           <StarRatingComponent
             name="rate2"
