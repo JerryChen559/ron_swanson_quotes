@@ -12,13 +12,16 @@ class UserRating extends Component {
     };
   }
 
-  componentDidMount = () => {
-    this.getUserRating();
-  };
+  // componentDidMount = () => {
+  //   this.getUserRating();
+  // };
 
   componentDidUpdate = (prevProps, prevState) => {
-    console.log("prevProps", prevProps);
-    if (prevProps.quote != this.props.quote) {
+    // console.log("prevProps", prevProps);
+    if (prevProps.quote !== this.props.quote) {
+      return this.getUserRating();
+    }
+    if (prevState.userRating !== this.state.userRating) {
       return this.getUserRating();
     }
   };
@@ -63,10 +66,8 @@ class UserRating extends Component {
   }
 
   render() {
-    console.log("state:", this.state);
-    console.log("props:", this.props);
-
-    // const { rating } = this.state;
+    // console.log("state:", this.state);
+    // console.log("props:", this.props);
 
     // Display only when there is a quote.
     return this.props.quote ? (
@@ -94,6 +95,7 @@ class UserRating extends Component {
           <h2>Vote for Awesomeness</h2>
 
           {/* Option: Open for user to rate quote */}
+          <h3>You can rate this quote:</h3>
           <StarRatingComponent
             name="rate1"
             starCount={5}
@@ -101,9 +103,7 @@ class UserRating extends Component {
             onStarClick={this.onStarClick.bind(this)}
           />
           {/* Submit button  */}
-          <button onClick={() => this.onSubmitRating()}>
-            Rate this quote!
-          </button>
+          <button onClick={() => this.onSubmitRating()}>Rate my rating!</button>
         </div>
       )
     ) : (

@@ -19,6 +19,10 @@ class QuotesPage extends Component {
   }
 
   componentDidMount() {
+    this.getUserID();
+  }
+
+  getUserID() {
     axios
       .get("/api/test")
       .then(res => {
