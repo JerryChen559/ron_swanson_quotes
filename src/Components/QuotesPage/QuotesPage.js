@@ -75,8 +75,6 @@ class QuotesPage extends Component {
       .catch(err => console.log(err));
   }
 
-  // .then get generated quote's average stars
-
   render() {
     console.log(this.state);
 
