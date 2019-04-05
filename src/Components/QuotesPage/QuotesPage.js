@@ -26,7 +26,7 @@ class QuotesPage extends Component {
     axios
       .get("/api/test")
       .then(res => {
-        // console.log("res.data", res.data);
+        console.log("res.data", res.data);
         this.setState({
           user_id: res.data.userid
         });

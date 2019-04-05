@@ -39,8 +39,9 @@ class LoginPage extends Component {
         if (res.data === "Username Already Exists!") {
           alert(res.data);
         } else {
-          console.log(res.data);
-          this.props.history.push("/quotes");
+          if (res.data === "Username and Password are now registered!") {
+            alert(res.data);
+          }
         }
       })
       .catch(err => console.log(err));

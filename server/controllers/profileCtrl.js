@@ -8,11 +8,8 @@ const addUser = (req, res) => {
       if (user.length === 0) {
         // if user does not already exist, create a new profile
         db.add_user([req.params.username, req.params.password])
-          .then(newUser => {
-            // console.log("creating new user", newUser);
-            req.session.userid = newUser.userid;
-            // console.log("req.session after: ", req.session);
-            res.status(200).send(newUser);
+          .then(message => {
+            res.status(200).json("Username and Password are now registered!");
           })
           .catch(err => res.status(500).send(err));
       } else {
